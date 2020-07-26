@@ -10,6 +10,7 @@ xhr.send();
 xhr.onload = function() {
     let response = JSON.parse(xhr.response); 
     let wrapper = document.querySelector(".wrapper");
+    console.log(response);
     response.items.map(num => {
         // console.log(num);
         wrapper.innerHTML += `
@@ -19,7 +20,7 @@ xhr.onload = function() {
                 <p class="card-text">
                     <span class="confirmed">Подтвержденных случаев: ${num.confirmed + num.confirmedInc}</span>
                     <br> 
-                    <span class="recovery">Выздоровело: ${num.recovery + num.recoveryInc}</span>
+                    <span class="recovered">Выздоровело: ${num.recovered + num.recoveredInc}</span>
                     <br>
                     <span class="deaths">Смертей: ${num.deaths + num.deathsInc}</span>
                     <br> 
@@ -32,4 +33,21 @@ xhr.onload = function() {
         `
     });
     // console.log(response);
+};
+
+console.log(document.querySelector(".search"));
+
+function sortCountries() {
+    let text = document.querySelector(".search").value;
+    text = text.trim().toLowerCase();
+
+    let cards = document.getElementsByClassName("card-title");
+    for (num of cards) {
+        if (num.textContent.toLowerCase().indexOf(text) > -1) {
+            num.parentElement.parentElement.style.display = "block";
+        } else {
+            num.parentElement.parentElement.style.display = "none";
+        };
+    }
+    console.log(cards);
 };
