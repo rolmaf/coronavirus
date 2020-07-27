@@ -6,26 +6,29 @@ xhr.open("GET", url, true);
 
 xhr.send();
 
-let width = screen.width;
-console.log(width);
-
-// let amountCards = width / (16 * 18);  
-// amountCards = Math.floor(amountCards);
-// console.log(amountCards);
-
-// document.querySelector(".search").style.width = `${amountCards * 18}rem`;
-
+let response;
+let wrapper = document.querySelector(".cards");
 
 xhr.onload = function () {
-    let response = JSON.parse(xhr.response);
-    let wrapper = document.querySelector(".wrapper");
+    response = JSON.parse(xhr.response);
+    wrapper.innerHTML = "";
     console.log(response);
+    drawCards("en");
+};
+
+function drawCards(countryCode) {
+    let cardTitle;
+    wrapper.innerHTML = "";
     response.items.map(num => {
-        // console.log(num);
+        if (countryCode == "ru") {
+            cardTitle = `<h5 class="card-title">${num.i18nCountryNames.ru}</h5>`;
+        } else if (countryCode == "en") {
+            cardTitle = `<h5 class="card-title">${num.i18nCountryNames.en}</h5>`;
+        };
         wrapper.innerHTML += `
-            <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                    <h5 class="card-title">${num.i18nCountryNames.ru}</h5>
+                    ${cardTitle}
                     <p class="card-text">
                         <span class="confirmed">Подтвержденных случаев: ${num.confirmed + num.confirmedInc}</span>
                         <br> 
@@ -39,10 +42,10 @@ xhr.onload = function () {
                     </p>
                 </div>
             </div>
-            `
+        `;
     });
-    // console.log(response);
 };
+
 
 function sortCountries() {
     let text = document.querySelector(".search").value;
@@ -57,5 +60,17 @@ function sortCountries() {
             };
         };
     };
-    // console.log(cards);
+};
+
+
+function myClick(event) {
+    document.querySelector(".hidden").classList.remove("hidden");
+    event.target.classList.add("hidden");
+    if (event.target.classList[0] == "russia-flag") {
+        drawCards("ru");
+    } else if (event.target.classList[0] == "england-flag") {
+        drawCards("en");
+    };
+
+    console.log(event.target.classList[0]);
 };
