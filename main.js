@@ -19,31 +19,49 @@ xhr.onload = function () {
 function drawCards(countryCode) {
     let cardTitle;
     wrapper.innerHTML = "";
-    response.items.map(num => {
-        if (countryCode == "ru") {
-            cardTitle = `<h5 class="card-title">${num.i18nCountryNames.ru}</h5>`;
-        } else if (countryCode == "en") {
-            cardTitle = `<h5 class="card-title">${num.i18nCountryNames.en}</h5>`;
-        };
-        wrapper.innerHTML += `
-        <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                    ${cardTitle}
-                    <p class="card-text">
-                        <span class="confirmed">Подтвержденных случаев: ${num.confirmed + num.confirmedInc}</span>
-                        <br> 
-                        <span class="recovered">Выздоровело: ${num.recovered + num.recoveredInc}</span>
-                        <br>
-                        <span class="deaths">Смертей: ${num.deaths + num.deathsInc}</span>
-                        <br> 
-                        <span class="confirmedInc"> Сегодня заболело: ${num.confirmedInc}</span>
-                        <br> 
-                        <span class="deathsInc">Сегодня умерло: ${num.deathsInc}</span>
-                    </p>
+    if (countryCode === "ru") {
+        response.items.map(num => {
+            wrapper.innerHTML += `
+            <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">${num.i18nCountryNames.ru}</h5>
+                        <p class="card-text">
+                            <span class="confirmed">Подтвержденных случаев: ${num.confirmed + num.confirmedInc}</span>
+                            <br> 
+                            <span class="recovered">Выздоровело: ${num.recovered + num.recoveredInc}</span>
+                            <br>
+                            <span class="deaths">Смертей: ${num.deaths + num.deathsInc}</span>
+                            <br> 
+                            <span class="confirmedInc"> Сегодня заболело: ${num.confirmedInc}</span>
+                            <br> 
+                            <span class="deathsInc">Сегодня умерло: ${num.deathsInc}</span>
+                        </p>
+                    </div>
                 </div>
-            </div>
-        `;
-    });
+            `;
+        });
+    } else if (countryCode === "en") {
+        response.items.map(num => {
+            wrapper.innerHTML += `
+            <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">${num.i18nCountryNames.en}</h5>
+                        <p class="card-text">
+                            <span class="confirmed">Подтвержденных случаев: ${num.confirmed + num.confirmedInc}</span>
+                            <br> 
+                            <span class="recovered">Выздоровело: ${num.recovered + num.recoveredInc}</span>
+                            <br>
+                            <span class="deaths">Смертей: ${num.deaths + num.deathsInc}</span>
+                            <br> 
+                            <span class="confirmedInc"> Сегодня заболело: ${num.confirmedInc}</span>
+                            <br> 
+                            <span class="deathsInc">Сегодня умерло: ${num.deathsInc}</span>
+                        </p>
+                    </div>
+                </div>
+            `;
+        });
+    };
 };
 
 
