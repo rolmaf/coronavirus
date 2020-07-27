@@ -23,5 +23,21 @@ main {
 }
 
 .search {
-    width: 400px;
+    width: calc(3 * 18rem);
+    margin-left: 5px;
+    margin-right: 5px;
+}   
+
+@media all and (max-width: 943px) {
+    .search {
+        width: 36rem;
+        margin: 0;
+    }
+}
+
+@media all and (max-width: 636px) {
+    .search {
+        width: 18rem;
+        margin: 0;
+    }
 }
