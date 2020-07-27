@@ -44,14 +44,11 @@ main {
     background-repeat: no-repeat;
 }
 
-.active::after {
-    content: "";
-    width: 10px;
-    height: 10px;
-    background-color: lightgreen;
+.hidden {
+    display: none;
 }
 
-.hidden {
+.hidden-fl {
     display: none;
 }
 
