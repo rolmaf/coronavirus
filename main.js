@@ -15,14 +15,14 @@ xhr.onload = function () {
     response = JSON.parse(xhr.response);
     wrapper.innerHTML = "";
     console.log(response);
-    drawCards("en");
+    drawCards("ru");
 };
 
 function drawCards(countryCode) {
     let cardTitle;
     wrapper.innerHTML = "";
-    wrapper.classList.add("hidden");
     loading.classList.remove("hidden");
+    wrapper.classList.add("hidden");
     if (countryCode === "ru") {
         response.items.map(num => {
             wrapper.innerHTML += `
@@ -51,15 +51,15 @@ function drawCards(countryCode) {
                         <div class="card-body">
                         <h5 class="card-title">${num.i18nCountryNames.en}</h5>
                         <p class="card-text">
-                            <span class="confirmed">Подтвержденных случаев: ${num.confirmed + num.confirmedInc}</span>
+                            <span class="confirmed">Confirmed cases: ${num.confirmed + num.confirmedInc}</span>
                             <br> 
-                            <span class="recovered">Выздоровело: ${num.recovered + num.recoveredInc}</span>
+                            <span class="recovered">Recovered: ${num.recovered + num.recoveredInc}</span>
                             <br>
-                            <span class="deaths">Смертей: ${num.deaths + num.deathsInc}</span>
+                            <span class="deaths">Deaths: ${num.deaths + num.deathsInc}</span>
                             <br> 
-                            <span class="confirmedInc"> Сегодня заболело: ${num.confirmedInc}</span>
+                            <span class="confirmedInc">Sick today: ${num.confirmedInc}</span>
                             <br> 
-                            <span class="deathsInc">Сегодня умерло: ${num.deathsInc}</span>
+                            <span class="deathsInc">Died today: ${num.deathsInc}</span>
                         </p>
                     </div>
                 </div>
