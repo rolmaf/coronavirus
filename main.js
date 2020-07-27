@@ -8,6 +8,8 @@ xhr.send();
 
 let response;
 let wrapper = document.querySelector(".cards");
+let loading = document.querySelector(".cssload-thecube");
+
 
 xhr.onload = function () {
     response = JSON.parse(xhr.response);
@@ -19,6 +21,8 @@ xhr.onload = function () {
 function drawCards(countryCode) {
     let cardTitle;
     wrapper.innerHTML = "";
+    wrapper.classList.add("hidden");
+    loading.classList.remove("hidden");
     if (countryCode === "ru") {
         response.items.map(num => {
             wrapper.innerHTML += `
@@ -62,6 +66,8 @@ function drawCards(countryCode) {
             `;
         });
     };
+    wrapper.classList.remove("hidden");
+    loading.classList.add("hidden");
 };
 
 
